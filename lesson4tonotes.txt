@@ -1,0 +1,6 @@
+"def make_input_fn(data_df, label_df, num_epochs=10, shuffle=True, batch_size=32)"
+data_df-->our pandas dataframe
+label_df-->the labels we used in importing and exploring the df like y_train, dfeval,etc.
+num_epochs-->how many times the model will see the entire dataset(always 10 by default)
+shuffle-->if we are going to shuffle and mix up the data before passing it to the model
+batch_size-->how many batches we are going to divide the whole dataset into
