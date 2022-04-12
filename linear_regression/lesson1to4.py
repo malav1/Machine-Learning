@@ -10,6 +10,8 @@ import tensorflow.compat.v2.feature_column as fc
 
 import tensorflow as tf
 
+
+
 #LOAD THE DATASET-EXPLORE IT-MAKE SURE WE UNDERSTAND IT
 #testing the model using new data is important bc if trianing data is re-fed then model could be biased/have memorised all the answers
 dftrain = pd.read_csv('https://storage.googleapis.com/tf-datasets/titanic/train.csv') # training data
@@ -22,10 +24,15 @@ print(dftrain.head())
 #printing the first row of the popped survived column and the first row of the dataframe containing the individual's details. the indexes always correspond even though the surivived column has now been separated.
 print(f" they did/did not survive: {y_train.loc[0]}\n",dftrain.loc[0])
 
+
+
+
 #CREATE OUR CATEGORICAL AND NUMERICAL COLUMNS
 CATEGORICAL_COLUMNS = ['sex', 'n_siblings_spouses', 'parch', 'class', 'deck',
                        'embark_town', 'alone']
 NUMERIC_COLUMNS = ['age', 'fare']
+
+
 
 #FOR A LINEAR ESTIMATOR THESE NEED TO BE CREATED AS FEATURE COLUMNS USING THE BELOW ADVANCED SYNTAX
 #feature_columns list starts as blank and will go on to store our different feature columns

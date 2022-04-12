@@ -4,3 +4,5 @@ label_df-->the labels we used in importing and exploring the df like y_train, df
 num_epochs-->how many times the model will see the entire dataset(always 10 by default)
 shuffle-->if we are going to shuffle and mix up the data before passing it to the model
 batch_size-->how many batches we are going to divide the whole dataset into
+-Feature columns are used to specify how Tensors received from the input function should be combined and transformed before entering the model. it basically tells the model "when you get these tensors, heres what you need to do with it and where to put it"
+-Tensors is a dtype
