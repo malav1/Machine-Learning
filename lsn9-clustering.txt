@@ -1,0 +1,22 @@
+-clustering is an unsupervised, learning algorithm.
+-you use it when you dont have labels or output info but you have input info/features/datapoints.
+-it involves the grouping of data points. In theory, data points that are in the same group should have similar properties and/or features. clustering groups these together
+
+    Basic Algorithm for K-Means.
+
+    Step 1: Randomly pick K points to place K centroids randomly
+        -the number of K points you have will determine how many centroids will be generated
+        -the centroids will then be defined at the point we randomly picked our k points 
+
+    Step 2: Assign all the data points to the centroids by distance. The closest centroid to a point is the one it is assigned to.
+        -each data point needs to be assigned to a centroid. the assigning is based on which centroid it is closes to. so for example if data point "5" is closest to centroid (a), thats the centroid it will be assigned it. 
+
+    Step 3: Average all the points belonging to each centroid to find the middle of those clusters (center of mass). Place the corresponding centroids into that position.
+        -after assigning all the datapoints, each centroid will be moved to the center/middle of the cluser where they will be surrounded by all the data points that have been assigned to them.
+
+    Step 4: Reassign every point once again to the closest centroid.
+    Step 5: Repeat steps 3-4 until no point changes which centroid it belongs to.
+        -once you get to this point it essentially means youve made/found the best clusters you possibly can
+
+-then when a new data point is created, it is assigned to the closets cluster and (i think) the whole process starts again
+- you need to know how many clusters you want from the beginning so you know how many k points/centroids to create

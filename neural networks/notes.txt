@@ -1,0 +1,42 @@
+LAYERS AND NODES/NEURONS
+-NN takes input and maps that input to some output. e.g y=4(x), we give some value to "x" which leads us to find the value of "x". this is a mapping of our input to our output
+
+-NN is made up of layers. input layer is our first layer and its is whats going to accept raw data (the things were trying to classify, predict, etc.). the input layer is made up of input neurons. for example, if you had a 28px*28px image, and you wanted to process each px for classification, you would pass each px (28*28=784px) to an input neuron. so you would have 784 neurons processing, one by one, processing each px. on the other hand, if we have 1 piece of info/data, like a single number, we would only need one neuron. 
+
+-neurons represent a "node" in the layer
+
+-the output layer will have as many output neurons as output pieces as we want. e.g. we are classifying images into 5 classes so we will have 5 output neurons. the way this would work is through probability distribution. each ON will generate a value, that when all the values of all the ONs are added together, we will get 1. so for example, ON representing class 2 might return a value of 0.90 representing the likeliness that the input data falls into that class. however, sometimes you can use one neuron where that one neuron will return which class it is most likely to fall into. unlike the previous example, the ON will return either 0,1,2,3 or 4. whereas the previous example returns a probability percentage for each class. 
+
+-we cant just go straight from input to output. in between we have hidden layers- we can have 100s to 1000s if we wanted to. its called hidden because we dont observe it.
+
+-every single layer is connected to another layer with "weights". there are different architectures of weights. a densely connected layer means every node(neuron) of the current layer is connected to every node of the previous layer. each. each weight has a numeric value(typically between 0 and 1). these are trainable parameters that our NN will tweak and change as we train to get the best possible result.
+
+-biases are different to regular nodes. theres only one bias and a bias exists in the previous layer to the layer it affects. it doesnt take any input information. its another trainable parameter for the network. its some constant numeric value that were going to connect to the hidden layer so we can do a few things with it. the weights of a bias are typically 1. biases dont connect to each other. theyre just something we add to the network as another trainable parameter that we can use. 
+
+- A neuron's input equals the sum of weighted outputs from all neurons in the previous layer + the bias.
+
+FUNCTIONS
+- activation functions are functions that are applied to the weighed sum of a neuron. They can be anything we want but are typically higher order/degree functions that aim to add a higher dimension to our data. We would want to do this to introduce more complexity to our model. By transforming our data to a higher dimension, we can typically make better, more complex predictions. But also, we can use these funcs to format our output to what were after(e.g maybe we want our output to be a number between 0 and 1). Below are some examples.
+
+    Relu (Rectified Linear Unit): takes any value less than zero and makes them zero. turns all negatives to zero and if they're positive it keeps the same number.
+
+    Tanh (Hyperbolic Tangent): squishes values between -1 and 1. 
+
+    Sigmoid: squishes values between 0 and 1. typically takes any big pos numbers and puts them closer to 1 and any big neg numbers and puts them closer to 0 
+
+-using activation funcs, the value of our neurons in the hidden layer now become "N1 = activation_func(sum of weighted outputs from all neurons in the previous layer + the bias)"
+
+-the way we train the NN model is that we give it some information, we give it the expected output and we observe the differences between the actual and expected output and make tweaks as necessary. the model starts with completely random weights and completely random biases.
+
+-the loss func which calculates how far away out acc output was from the expected output. it will return a value that signifies "how bad" or "how good" the network was. the higher the value, the worse the network was. 
+
+-Some common loss/cost functions include: Mean Squared Error, Mean Absolute Error, Hinge Loss. the parameters of our network are weights and biases and by changing these parameters we will either make our network worse or better. the loss function will determine this. What we want is the global minimum. This is the lowest point where we get the least possible loss from our NN. 
+
+-Gradient descent is the algorithm we use to find the optimal paramaters (weights and biases) for our network to reach the global minimum. backpropagation is the process of applying the new found optimal paramters to our current parameters by updating them.
+
+-optimizer is the function that implements gradient descent and backpropagation algorithms. examples include Stochastic Gradient Descent and Mini-Batch Gradient Descent.
+
+-hyper-parameter tuning is process of changing variable values and seeing how models perform with different hyperparameters
+
+-EXAMPLE: we start with the coordinates 2,2,2. we want this cordinate to be classified as a "RED" dot(which will be numerically represented as 0). chances are, we will not get the output we want. maybe we get "0.7" after applying the sigmoid func. at this point we use the loss func to evaluate the NN's performance. we then calculate the gradient to see the direction we need to go in to minimise loss. then we use backpropagation to step back through the network and update the parameters according to the gradient we calculated.
+

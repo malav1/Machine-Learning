@@ -1,0 +1,26 @@
+-deals with probability distribution
+
+-example that will be used for explanation is weather prediction. via a weather model. we want to use our model to predict the weather at any given day, given the probabilities of different events occuring.
+
+-lets say we know, in a simulated environment, we have specific data about our environment- e.g. we know its sunny, 80% chance it will be sunny the next day and 20% chance of rain, we also hav info about the average temp on those days and info about the nature of hot and cold days.
+
+-The Hidden Markov Model is a set number of of states- in our example, the states we would have are hot day and cold day. they areb "hidden" because we never access or observe these states whilst we interact with the model. in fact, what we look at is observations. at each state we have an observation. e.g. when its hot outside john has a 80% chance of being happy, if its cold, john has a 20%. this is an observation. in this certain state, we can observe the probability of something happening during that state. the state is not significant- its the observation we get from that state
+
+-back to the weather example, the weather will be an observation of our states. so for example, when its sunny, the weather will have a high probability of being between 15-20C.
+
+-each state has different observations and different probabilities of those observations occuring. if the probability is 100% it will be called "outcome" instead. they also have different probabilities for the states to transition into other states or back into the same state.
+
+    STATES: In each markov model we have a finite set of states. These states could be something like "warm" and "cold" or "high" and "low" or even "red", "green" and "blue". These states are "hidden" within the model, which means we do not direcly observe them.
+
+    OBSERVATIONS: Each state has a particular outcome or observation associated with it based on a probability distribution. An example of this is the following: On a hot day Tim has a 80% chance of being happy and a 20% chance of being sad.
+
+    TRANSITIONS: Each state will have a probability defining the likelyhood of transitioning to a different state. An example is the following: a cold day has a 30% chance of being followed by a hot day and a 70% chance of being follwed by another cold day.
+
+    To create a hidden markov model we need.
+    a)States
+    b)Observation Distribution
+    c)Transition Distribution
+
+-another example, during a cold day(state) there is a 80% chance(probaility) of rain(observation) and a 90% chance(probability) that the next day will also be a cold day(transition back to the same state)
+
+-the markov model will predict future events based on previous events. hidden markov models arent super widely used but good to know about

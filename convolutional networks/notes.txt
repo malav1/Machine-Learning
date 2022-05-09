@@ -1,0 +1,39 @@
+-deep computer vision is a field of artificial intelligence (AI) that enables computers and systems to derive meaningful information from digital images, videos and other visual inputs — and take actions or make recommendations based on that information.
+
+-In this course we will learn how to peform image classification and object detection/recognition using deep computer vision via convolutional neural network.
+
+-Image data in CNNs: they are usually made up of 3 dimensions- height, width (both previously seen and usually make a 1D image)and color channels(new aspect which makes the image 3D).
+
+-The number of color channels represents the depth of an image and coorelates to the colors used in it. For example, an image with 3 channels is likely made up of rgb pixels. So, for each pixel we have three numeric values in the range 0-255 that define its color. For an image of color depth 1 we would likely have a greyscale image with one value defining each pixel, again in the range of 0-255. refer to png attached.
+
+-DNN learns specific features in specific areas of the image. for example, if we flipped an image of a cat, a DNN would no longer be able to classify it as a cat because it learnt the features of a cat in a specific position. the Dense network looks at things globaly- it looks at the entire image and learns patterns in specific areas which is why we need images centered and similar to perform classification bc it cant learn local patterns and apply them to different parts of the image.
+
+-however, a CNN learns local patterns. rather than learning this feature exists in this set location it learns what the feature looks like and can spot it anywhere. the CNN will scan through the entire image, it will pick up features and find features in the image, and based on the features that exist in that image, it will pass that onto a DNN.
+
+-Convolutional Layers work together by increasing complexity and abstraction at each subsequent layer. The first layer might be responsible for picking up edges and short lines, while the second layer will take as input these lines and start forming shapes or abstract images. Finally, the last layer might take these shapes and determine which combinations make up a specific image.
+
+-DNNs also outputs some numeric values whereas CNNs output a feature map.
+
+-feature map stands for a 3D tensor with two spacial axes (width and height) and one depth axis. Our convolutional layers take feature maps as their input and return a new feature map that represents the presence of specific filters from the previous feature map. These are what we call response maps.
+
+-a filter is pattern of pixels that we are looking for in an image. The number of filters in a convolutional layer represents how many patterns each layer is looking for and what the depth of our response map will be. If we are looking for 32 different patterns/filters than our response map will have a depth of 32. Each one of the 32 layers of depth will be a matrix of some size containing values indicating if the filter was present at that location or not. see attached png.
+
+-sample size refers to the size of each batch of pixels which will be examined. therefore the filter and the sample will be the same size as the filter needs to sit perfectly on top of each sampled group of pxs so it scans the whole image.
+
+-the CNN returns a feature map that quantifies the presence of a filter at a specific location. and this filter, the advantage of it, is we slide it across the entire image so if the filter is present anywhere in the image we will know about rather than in our DNN where it had to learn that pattern is a specific global location
+
+-a trainable parameter of a CNN is its filters
+
+-the way the filter actually works is that it scans every every area in all combinations (normally the number of times it can scan the image correlates with the size of the filter so if its 3x3 the number of scans will also be 9). each scan returns a dot product (all values in the sample multipled by all values of the filter). when the dot products are put together in pxs it creates the response map. each filter will create its own response map. the more similar each scan is to the filter, the higher/lower/whatever the dot product will be. 
+
+-Padding is the addition of the appropriate number of rows and/or columns to your input data such that each pixel can be centered by the filter.
+
+-previously we assumed that the filters would be slid continously through the image such that it covered every possible position. This is common but sometimes we introduce the idea of a stride to our convolutional layer. The stride size reprsents how many rows/cols we will move the filter each time. this isnt used commonly
+
+-pooling layer operator downsamples feature maps and reduces their dimensions. They work in a similar way to convolutional layers where they extract windows from the feature map and return a response map of the max, min or average values of each channel. Pooling is usually done using windows of size 2x2 and a stride of 2. This will reduce the size of the feature map by a factor of two and return a response map that is 2x smaller.
+
+-If you don't have millions of images it is difficult to train a CNN from scratch that performs very well. this is when data augmentation is used
+
+-data augmentation makes multiple different pics from the same pic. it will make, for example, a flipped verion, stretched, rotated, etc. when we pass these to our model it should be better at generalising bc it will see the same image but modified multiple times which means we can turn a dataset of 10,000 images to 40,000 images by doing 4 augmentations on each image.
+
+-using a pretrained CNN as apart of our own custom network to improve the accuracy of our model. We know that CNN's alone (with no dense layers) don't do anything other than map the presence of features from our input. This means we can use a pretrained CNN, one trained on millions of images, as the start of our model. This will allow us to have a very good convolutional base before adding our own dense layered classifier at the end. In fact, by using this techique we can train a very good classifier for a realtively small dataset (< 10,000 images). This is because the convnet already has a very good idea of what features to look for in an image and can find them very effectively. So, if we can determine the presence of features all the rest of the model needs to do is determine which combination of features makes a specific image.

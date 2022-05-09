@@ -62,6 +62,10 @@ linear_est = tf.estimator.LinearClassifier(feature_columns=feature_columns)
 
 #TRAINING THE MODEL
 linear_est.train(train_input_fn)  # input function here passes all the tensors to the model
+
+
+
+#TESTING THE MODEL
 result = linear_est.evaluate(eval_input_fn)  # get model metrics/stats by testing using testing data. we store var result bc we will want to look at it later
 
 
