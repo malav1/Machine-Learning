@@ -44,7 +44,7 @@ train_images, test_images = train_images / 255.0, test_images / 255.0 #Normalize
 #structure is: conv_layer=>max_pool_layer=>conv_layer=>max_pool_layer
 model = models.Sequential()
 
-model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3))) #1st layer=the first number on this line is the amount of filters(the first number on the other conv layers also represent this). the brackets after that contain the sample size (3x3). relu will be applied to the dot product value wich will then be outputted in the response map. 32, 32, 3 means we will process 32 filters of size 3x3 over our input data.
+model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3))) #1st layer=the first number on this line is the amount of filters(the first number on the other conv layers also represent this). the brackets after that contain the sample size (3x3). relu will be applied to the dot product value wich will then be outputted in the response map. 32, 32, 3 means our imgs will be sized 32x32 and have 3 color channels.
 
 model.add(layers.MaxPooling2D((2, 2))) #This layer will perform the max pooling operation using 2x2 samples and a stride of 2.
 
@@ -58,7 +58,7 @@ model.add(layers.Conv2D(64, (3, 3), activation='relu'))
 =================================================================
  conv2d (Conv2D)             (None, 30, 30, 32)        896       
                                                                  
- max_pooling2d (MaxPooling2D  (None, 15, 15, 32)       0         
+ max_pooling2d (MaxPooling2D  (None, 15, 15, 32)       0           30=>15 bc our maxpooling is downsampling by 2  
  )                                                               
                                                                  
  conv2d_1 (Conv2D)           (None, 13, 13, 64)        18496     

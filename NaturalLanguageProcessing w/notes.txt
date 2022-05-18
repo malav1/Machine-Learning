@@ -1,0 +1,26 @@
+-Natural Language Processing (or NLP for short) is a discipline in computing that tries to understand natural human language. examples include spell check, autocomplete, voice assistance, etc.- anything that deals with textual data
+
+-We will learn how to use a reccurent neural network to do the following:
+
+    -Sentiment Analysis: determines how positive or negative a sentence/piece of text is. we will use this to classify movie reviews
+    -Character Generation: generates the next character in a sequence of text. we will use this to make the model write a play
+
+-BAG OF WORDS: we need to turn textual data to numeric data to feed to the model. bag of words is a method/algorithm to do this although it is quite flawed and only works for simple tasks. bag of words says we will look at our entire training dataset and we will create a dictionary look-up of the vocabulary. every single unqiue word in the dataset is the vocab- thats the amount of words the model is expected to understand. every single one of these will be placed in a dict with an integer next to it as its int value.e.g. {I:0,am:1,may:2}. the bag refers to the storing of the integers that get pulled from each word in a sentence (which we have given a numeric value via our dict). we also lose the ordering of words this way. thats why its only good for simple tasks
+
+    -the importance of sentence structuring is portrayed in the following example:
+    I thought the movie was going to be bad, but it was actually amazing!
+    I thought the movie was going to be amazing, but it was actually bad!   
+
+-word embeddings tries to find a way to represent words that are similar using similar numbers. what it actually does is classify/translate every single one of our words into a vector with n amount of dimensions (maybe 64 or 128). every component of that vector will tell us which group it belongs to or how similar it is to other words. so if we have a 3D vector and the dimensions for "happy" are (23,30,45) we would hope "good" would be given vectors such as (20,35,40).
+
+-word embeddings is actually a layer that we add to our model. it learns the embeddings for our words by picking out context in a sentence and based on a word's positioning in a sentence, what it means and goes on to encode it with a int value. the word embeddings are trained and the model learns these embeddings as it goes and we hope that by the time its looked at enough training data, its determined really good ways to represent all the different words so it makes sense to our model in the further layers. we can even use a pretrained model
+
+-RNNs are best for NLP and are most typically used to process textual data. they are used as a layer. There are many different types of them. unlike other NNs/layers (e.g DNN,CNN), it contains an internal loop. this means the RNN/layer doesnt process the entire data at once-the trianing example/input. it processes it at different time steps and maintains an internal memory in an internal state so that when it looks at a new input it will remember what its seen previously and treat that input based on the context/understanding its already developed. with other DNNs, theyre called feed forward NNs. this means we give all our data to it at once and we pass that data from left to right. whereas with RNNs, we have a loop which means we dont feed the entire textual data at once, we feed it one word at a time. it processes that word, generates some output based on that word and uses the internal memory state its keeping track of to do that, as part of the calculation. we do this because, like humans, when we look at text, we read it left to right word to word and based on the words weve already read we slowly start to develop an undertsanding of what were reading.
+
+    -e.g. if a human just read the word "encode" it wouldnt mean much to them. however if they read the whole snetence that the word falls in, they start to develop an understanding of what this next word means based on th eprevious words. this is similar to what a RNN does- it slowly builds up its understanding of what the textual data means.
+
+    -input=>output=>input=>output style discussed above is called simpleRNN layer. The issue that may arise with this is that when our textual data is very long, by the time the RNN starts processing the last words, the first words in the memory bank become hard to remember what its seen at the beginning becasuse its become so insignificant because there have been so many outputs since then that have been tagged to the memory.
+
+    - LSTM (Long Short-Term Memory) layer works like a simpleRNN layer but adds a way to access inputs from any timestep in the past. Whereas in our simple RNN layer, input from previous timestamps gradually disappeared as we got further through the input. With a LSTM we have a long-term memory data structure (like a conveyor belt) storing all the previously seen inputs as well as when we saw them. This allows for us to access any previous value we want at any point in time. 
+
+
